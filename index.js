@@ -13,6 +13,7 @@ const organiserRole = serverConfig.Role_Organiser;
 const parse_sklReg = require('./RequestParser');
 const parse_Participants = require('./formatParticipants');
 const GetSheets = require('./makeRequestsGetRawData');
+const EventList = require('./serverConfig.json').EventList;
 
 var executingCommands = {}
 config.startTime = new Date();
@@ -47,7 +48,7 @@ setInterval(function (){
 				
 				 // console.log(unformated_data.values[0]); //DEBUG
 
-				let formatedRegistration = parse_sklReg(unformated_data.values[0]);
+				let formatedRegistration = parse_sklReg(unformated_data.values[0],EventList);
 				let isValid = parse_Participants(formatedRegistration);
 				if(isValid[0] == 'REG'){
 					let parsedParticipants = isValid[1]; //already stringified
