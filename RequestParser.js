@@ -102,8 +102,6 @@ class Participant {
 }
 
 module.exports = function parse_data(data, event_list) {
-	//console.log(data.length);
-
 	var events = event_list || ["Castaway", "Face off", "Whose Line is it Anyway?", "5 Second Summary", "Suits", "Inside Out", "Surprise Event", "Shark Tank", "Just a Minute", "Valorant", "Happy Feet", "High School Musical"];
 
 	var registration = new Registration();
@@ -152,3 +150,6 @@ module.exports = function parse_data(data, event_list) {
 
 	return registration;
 }
+
+//D/U
+//console.log(data.length);

@@ -31,12 +31,13 @@ module.exports = {
                         return;
                     }
                 }
-
-                // console.log(eventName);
-                // console.log(eventKeys)
                 message.channel.send('Event Not Found :(');
                 return;
             }
         }
     }
 }
+
+//Unused/Debug
+// console.log(eventName);
+// console.log(eventKeys)

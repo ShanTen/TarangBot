@@ -33,9 +33,9 @@ for (const file of commandFiles) {
 
 //############### Check if Sheets has been updated #####################
 
-setInterval(function (){
+setInterval(function () {
 	var today = new Date();
-	var date = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+	var date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
 	var time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
 	var dateTime = `${date} ${time}`;
 
@@ -43,19 +43,16 @@ setInterval(function (){
 
 	GetSheets().then(
 		unformated_data => {
-			if(unformated_data && unformated_data != null){ 
+			if (unformated_data && unformated_data != null) {
 				console.log('Got Registration!');
-				
-				 // console.log(unformated_data.values[0]); //DEBUG
-
-				let formatedRegistration = parse_sklReg(unformated_data.values[0],EventList);
+				let formatedRegistration = parse_sklReg(unformated_data.values[0], EventList);
 				let isValid = parse_Participants(formatedRegistration);
-				if(isValid[0] == 'REG'){
+				if (isValid[0] == 'REG') {
 					let parsedParticipants = isValid[1]; //already stringified
-					fs.writeFileSync(`./participants.json`,parsedParticipants);
+					fs.writeFileSync(`./participants.json`, parsedParticipants);
 					return;
 				}
-				else if(isValid[0]=='ERR'){
+				else if (isValid[0] == 'ERR') {
 					console.log(`Tried to parse registration, but failed either due to invalid or some other error.`)
 					console.log(isValid[1])
 					return;
@@ -79,28 +76,22 @@ client.on('ready', function () {
 
 //############################### Handle Roles ##################################
 
-const someJSONobj = require(`./participants.json`); 
+const someJSONobj = require(`./participants.json`);
 client.on('guildMemberAdd', (member) => {
 	console.log("Got New Join!");
 	let user = `${member.user.username}#${member.user.discriminator}`;
 	console.log(`${user} Joined the server!`); //LOGIT
 	var rolesToassign = someJSONobj[user].Events;
-	for(var roleName of rolesToassign){
+	for (var roleName of rolesToassign) {
 		let roleID = serverConfig.Events[roleName].RoleID;
-		//Fix server config channel IDs
-		// let channelID = serverConfig.Events[roleName].ChannelID;
-		// console.log(member.client.channels.cache)
-		// .get(channelID).send(`Welcome to ${roleName} ${someJSONobj[user].name}!`);
-		// client.channels.cache.get(channelID).send(`Welcome to ${roleName} ${someJSONobj[user].name}!`);
 		member.roles.add(roleID)
 	}
-	
+
 });
 
 //############################### Command Handler ###############################
 
 client.on('message', message => {
-	// console.log(executingCommands);
 
 	if (executingCommands[message.author.id]) {
 		executingCommands[message.author.id] = executingCommands[message.author.id].execute(message, null, config, null, Discord);
@@ -124,16 +115,22 @@ client.on('message', message => {
 
 	if (command.args && !args.length)
 		return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
-
 	try {
-		var db = null; //SET DB 
+		var db = null; //There's no db? never has been 🔪🔪🔪
 		executingCommands[message.author.id] = commandInstance.execute(message, args, config, db, Discord); //adding disc instance maybe bad idea
 	}
-
 	catch (error) {
 		console.error(error);
 		console.log(commandName);
 		message.reply('Yikes. There was an error trying to execute that command!');
 	}
-
 });
+
+//Unused / Debug
+// console.log(executingCommands);
+//Fix server config channel IDs
+// let channelID = serverConfig.Events[roleName].ChannelID;
+// console.log(member.client.channels.cache)
+// .get(channelID).send(`Welcome to ${roleName} ${someJSONobj[user].name}!`);
+// client.channels.cache.get(channelID).send(`Welcome to ${roleName} ${someJSONobj[user].name}!`);
+// console.log(unformated_data.values[0]); //DEBUG

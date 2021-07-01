@@ -1,4 +1,3 @@
-// var registrationsCount = 0; //set from file
 module.exports = async function makeRequestsReturnRawData(){
 	var saveData = require('./save.json');
 	const axios = require('axios');
@@ -22,11 +21,7 @@ module.exports = async function makeRequestsReturnRawData(){
 	try{
 		var data = (await getReq(url())).data;
 		if(data.values){
-			console.log(`Got New Registration!`) //#log it
-			saveData.registrationsCount += 1; //save to file
-
-			// console.log(`Req Parser save: ${JSON.stringify(saveData)}`); //DEBUG
-
+			saveData.registrationsCount += 1; //save to _save_ file 
 			require('fs').writeFileSync('./save.json',JSON.stringify(saveData));
 			return data;
 		}else{
@@ -37,3 +32,9 @@ module.exports = async function makeRequestsReturnRawData(){
 		console.error(err.message);
 	}
 }
+
+
+//Debug / Unused
+// console.log(`Req Parser save: ${JSON.stringify(saveData)}`); //DEBUG
+// console.log(`Got New Registration!`) //#log it
+// var registrationsCount = 0; //set from file

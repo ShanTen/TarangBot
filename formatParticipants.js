@@ -1,6 +1,5 @@
 module.exports = function AppendData(reg){
     var saveData = require('./save.json');
-    //console.log(`Red Data From Participants: ${JSON.stringify(saveData)}`); //Debug
     class Participant{ //lmao
         Name;
         Events=[];
@@ -17,9 +16,7 @@ module.exports = function AppendData(reg){
                         tParticipants[p.DiscordId] = new Participant();
                         tParticipants[p.DiscordId].Name = p.Name
                         tParticipants[p.DiscordId].Events.push(eventReg.Name)
-                        // console.log(`Save Data in loop ${JSON.stringify(saveData)}`); //Debug
                         saveData["participants"] += 1;
-                        // console.log(saveData["participants"]);
                     }
                     else{
                         tParticipants[p.DiscordId].Events.push(eventReg.Name);
@@ -28,7 +25,7 @@ module.exports = function AppendData(reg){
             }
         }
         let pData = JSON.stringify(tParticipants);
-        // console.log(`Part formatter save...${JSON.stringify(saveData)}`);
+
         require('fs').writeFileSync('./save.json',JSON.stringify(saveData));
         return ['REG',pData];
     }
@@ -37,3 +34,9 @@ module.exports = function AppendData(reg){
         return ['ERR',err.message];
     }
 }
+
+//Unused/Debug
+// console.log(`Part formatter save...${JSON.stringify(saveData)}`);
+// console.log(saveData["participants"]);
+// console.log(`Save Data in loop ${JSON.stringify(saveData)}`); //Debug
+//console.log(`Red Data From Participants: ${JSON.stringify(saveData)}`); //Debug
