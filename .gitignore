@@ -1,0 +1,16 @@
+Rules-tarang.txt
+TarangBot/
+Unused/
+cmds/beta/*
+config.json
+gsheetsConfig.json
+helpScripts/getEmojis.js
+node_modules/
+package-lock.json
+package.json
+participants.json
+save.json
+serverConfig.json
+tbot.zip
+test/
+todo
