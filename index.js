@@ -13,7 +13,7 @@ const organiserRole = serverConfig.Role_Organiser;
 const parse_sklReg = require('./RequestParser');
 const parse_Participants = require('./formatParticipants');
 const GetSheets = require('./makeRequestsGetRawData');
-const EventList = require('./serverConfig.json').EventList;
+const EventList = Object.keys(serverConfig.Events);
 
 var executingCommands = {}
 config.startTime = new Date();
