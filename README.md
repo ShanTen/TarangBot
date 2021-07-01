@@ -15,10 +15,14 @@ Written in JS and using discord.js for discord client api.
     This means there is no painful secondary role handling when a participant joins the server.
 
 + **Normalised Data Loading**
-    All data loading is normalised through three json config files, namely 
+    All data loading is normalised through three json config files, namely
+    
     *gConfig --> Google Sheets Config*
+    
     *serverConfig --> Channel and Role IDs of the server*
+    
     *Config (Main)  --> Discord API and Event Statuses*
+
   
 + **Command Handler**
     All bot commands are handled by a command handler.
