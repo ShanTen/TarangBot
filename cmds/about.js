@@ -18,7 +18,7 @@ module.exports = {
                 .setAuthor(`Shantanu R`,iconUrl)
                 .setTitle('**About**')
                 .setColor("#FF8000")
-                .setDescription(`Hi, I'm Shantanu R of class 12\n-debater, quizzer,  **g a m e r**   and failed SPL candidate, the creator of this...*thing*..?\nI hosted Tarang Bot last year and made this year's using discord.js and js.\nWhy? Mostly due to very high self loathing tendencies...\n\n\nMy ig: @ddosouttaexistence\nBot repo: <https://github.com/shanTen/tbot>\n\nps thanks vert for help with the data parser
+                .setDescription(`Hi, I'm Shantanu R of class 12\n-debater, quizzer,  **g a m e r**   and failed SPL candidate, the creator of this...*thing*..?\nI hosted Tarang Bot last year and made this year's using discord.js and js.\nWhy? Mostly due to very high self loathing tendencies...\n\n\nMy ig: @ddosouttaexistence\nBot repo: <https://github.com/shanTen/TarangBot>\n\nps thanks vert for help with the data parser
                 `)
                 message.channel.send(embed);
             }        
