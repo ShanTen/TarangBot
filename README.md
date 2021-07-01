@@ -5,8 +5,9 @@
 
 ### *Experience Euphoria!*
 
-The discord bot written for The PSBB Millennium's Annual Culturals Event - Tarang 
-Written in JS using discord.js for discord.
+The discord bot written for The PSBB Millennium's Annual Culturals Event - Tarang
+
+Written in JS and using discord.js for discord client api.
 
 ## Features
 + **Automatic google forms registration integration**
