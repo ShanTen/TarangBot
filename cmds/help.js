@@ -9,6 +9,7 @@ module.exports = {
     usage: `${prefix}help`,
     aliases: ['info'],
     isPublic: true,
+    showInHelp: true,
     getCommand() {
         return {
             execute(message, args, _config, _db) {
@@ -21,7 +22,7 @@ module.exports = {
                 for (var vec of commands) {
                     var cmdObj = vec[1];
 
-                    if (cmdObj.isPublic)
+                    if (cmdObj.showInHelp)
                         fvecArr.push([cmdObj.usage, cmdObj.description]);
                 }
 

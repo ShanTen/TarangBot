@@ -6,7 +6,8 @@ module.exports = {
     description: `Monke tiem.`,
     usage: `${prefix}oogabooga`,
     aliases: ['ooogs', 'ogbg', "ungabunga", "unga", "oogs"],
-    isPublic: false,
+    isPublic: true,
+    showInHelp: false,
     getCommand() {
         return {
             execute(message, args) {

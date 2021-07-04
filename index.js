@@ -1,4 +1,7 @@
 const fs = require('fs');
+
+const fsPromise = require('fs').promises;
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
@@ -14,6 +17,8 @@ const parse_sklReg = require('./RequestParser');
 const parse_Participants = require('./formatParticipants');
 const GetSheets = require('./makeRequestsGetRawData');
 const EventList = Object.keys(serverConfig.Events);
+
+const statsFileLocation = `./stats.json`;
 
 var executingCommands = {}
 config.startTime = new Date();
@@ -33,35 +38,39 @@ for (const file of commandFiles) {
 
 //############### Check if Sheets has been updated #####################
 
-setInterval(function () {
-	var today = new Date();
-	var date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-	var time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
-	var dateTime = `${date} ${time}`;
+var pollingState = false;
 
-	console.log(`Polled at ${dateTime}`);
-
-	GetSheets().then(
-		unformated_data => {
-			if (unformated_data && unformated_data != null) {
-				console.log('Got Registration!');
-				let formatedRegistration = parse_sklReg(unformated_data.values[0], EventList);
-				let isValid = parse_Participants(formatedRegistration);
-				if (isValid[0] == 'REG') {
-					let parsedParticipants = isValid[1]; //already stringified
-					fs.writeFileSync(`./participants.json`, parsedParticipants);
-					return;
+if(pollingState==true) {
+	setInterval(function () {
+		var today = new Date();
+		var date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+		var time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+		var dateTime = `${date} ${time}`;
+	
+		console.log(`Polled at ${dateTime}`);
+	
+		GetSheets().then(
+			unformated_data => {
+				if (unformated_data && unformated_data != null) {
+					console.log('Got Registration!');
+					let formatedRegistration = parse_sklReg(unformated_data.values[0], EventList);
+					let isValid = parse_Participants(formatedRegistration);
+					if (isValid[0] == 'REG') {
+						let parsedParticipants = isValid[1]; //already stringified
+						fs.writeFileSync(`./participants.json`, parsedParticipants);
+						return;
+					}
+					else if (isValid[0] == 'ERR') {
+						console.log(`Tried to parse registration, but failed either due to invalid or some other error.`)
+						console.log(isValid[1])
+						return;
+					}
+					else return;
 				}
-				else if (isValid[0] == 'ERR') {
-					console.log(`Tried to parse registration, but failed either due to invalid or some other error.`)
-					console.log(isValid[1])
-					return;
-				}
-				else return;
 			}
-		}
-	).catch(err => console.log(err.message));
-}, 10000)
+		).catch(err => console.log(err.message));
+	}, 10000)	
+}
 
 //############################### STATUS ###############################
 var i = 0;
@@ -117,7 +126,20 @@ client.on('message', message => {
 		return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
 	try {
 		var db = null; //There's no db? never has been 🔪🔪🔪
+		
+		var stats = require(statsFileLocation);
+		var incrementCommands = Object.keys(stats);
+
 		executingCommands[message.author.id] = commandInstance.execute(message, args, config, db, Discord); //adding disc instance maybe bad idea
+		
+		//lmao
+		if(incrementCommands.includes(command.name)){
+			(async function (sfloc) {
+				stats[command.name] += 1;
+				var data = JSON.stringify(stats)
+				await fsPromise.writeFile(sfloc, data)
+			})(statsFileLocation);
+		}
 	}
 	catch (error) {
 		console.error(error);

@@ -13,6 +13,7 @@ module.exports = {
     usage: `${prefix}rules <Event Name>`,
     aliases: ['roolz'], //#Quirkyh! 😜😝😝
     isPublic: true,
+    showInHelp: true,
     getCommand() {
         return {
             execute(message, args, _config, _db) {

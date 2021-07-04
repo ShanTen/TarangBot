@@ -8,6 +8,7 @@ module.exports = {
     usage: `${prefix}about`,
     aliases: ['abt'],
     isPublic: true,
+    showInHelp: true,
     getCommand(){
         return{
             execute(message, args, _config, _db, Discord){
