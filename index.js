@@ -20,6 +20,8 @@ const EventList = Object.keys(serverConfig.Events);
 
 const statsFileLocation = `./stats.json`;
 
+var arguments = process.argv;
+
 var executingCommands = {}
 config.startTime = new Date();
 client.login(config.token);
@@ -38,9 +40,14 @@ for (const file of commandFiles) {
 
 //############### Check if Sheets has been updated #####################
 
-var pollingState = false;
+//node index false
+//if undefined set as polling = true
+var pollingState = "true";
+if(["true","false"].includes(arguments[2].toLowerCase())){
+	pollingState = arguments[2];
+}
 
-if(pollingState==true) {
+if(pollingState=="true") {
 	setInterval(function () {
 		var today = new Date();
 		var date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
