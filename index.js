@@ -120,7 +120,7 @@ client.on('message', message => {
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
-	if (!command || disabledCommands.includes(command.name)) return;
+	if (!command) return;
 
 	// Config -> Load Role IF from config
 	var commandInstance = command.getCommand();
