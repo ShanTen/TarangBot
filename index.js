@@ -120,7 +120,7 @@ client.on('message', message => {
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
-	if (!command) return;
+	if (!command || disabledCommands.includes(command.name)) return;
 
 	// Config -> Load Role IF from config
 	var commandInstance = command.getCommand();
@@ -129,11 +129,10 @@ client.on('message', message => {
 		return;
 	}
 
-	if (command.args && !args.length)
+	if (command.args && !args.length) //this doenst work?
 		return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
 	try {
-		var db = null; //There's no db? never has been 🔪🔪🔪
-		
+		var db = null; //There's no db? never has been 🔪🔪🔪	
 		var stats = require(statsFileLocation);
 		var incrementCommands = Object.keys(stats);
 
