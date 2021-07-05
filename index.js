@@ -43,7 +43,7 @@ for (const file of commandFiles) {
 //node index false
 //if undefined set as polling = true
 var pollingState = "true";
-if(["true","false"].includes(arguments[2].toLowerCase())){
+if(arguments[2] && ["true","false"].includes(arguments[2].toLowerCase())){
 	pollingState = arguments[2];
 }
 
