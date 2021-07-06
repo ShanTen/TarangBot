@@ -97,6 +97,9 @@ client.on('guildMemberAdd', (member) => {
 	console.log("Got New Join!");
 	let user = `${member.user.username}#${member.user.discriminator}`;
 	console.log(`${user} Joined the server!`); //LOGIT
+	if(!someJSONobj[user]){ //bruh 
+		return;
+	}
 	var rolesToassign = someJSONobj[user].Events;
 	for (var roleName of rolesToassign) {
 		let roleID = serverConfig.Events[roleName].RoleID;
@@ -132,6 +135,11 @@ client.on('message', message => {
 	if (command.args && !args.length) //this doenst work?
 		return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
 	try {
+
+		if([21,4,292,69,420,11,33].includes(Math.floor((Math.random() * 1000) + 1))){
+			return message.channel.send('no.');
+		}
+
 		var db = null; //There's no db? never has been 🔪🔪🔪	
 		var stats = require(statsFileLocation);
 		var incrementCommands = Object.keys(stats);
