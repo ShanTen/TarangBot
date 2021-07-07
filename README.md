@@ -1,32 +1,34 @@
 # TarangBot 2021
 <p align="center">
-  <img width="671" height="671" src="https://media.discordapp.net/attachments/853167765400322086/855063676843196416/Screenshot_20210616-222910_Adobe_Acrobat.jpg?width=671&height=671">
+  <img width="350" height="350" src="https://media.discordapp.net/attachments/853167765400322086/855063676843196416/Screenshot_20210616-222910_Adobe_Acrobat.jpg?width=671&height=671">
 </p>
 
 ### *Experience Euphoria!*
 
-The discord bot written for The PSBB Millennium's Annual Culturals Event - Tarang
+The discord bot written to handle registrations 
+for The PSBB Millennium's Annual Culturals Event Tarang
 
-Written in JS and using discord.js for discord client api.
+Written in JS and using discord.js 12 for discord client api.
 
 ## Features
-+ **Automatic google forms registration integration**
-    The application polls a Google Sheets file that is linked to the registration form and receives all participant metadata automatically.
-    This means there is no painful secondary role handling when a participant joins the server.
 
-+ **Normalised Data Loading**
-    All data loading is normalised through three json config files, namely
+### **Automatic google forms registration integration:**
+The application polls a Google Sheets file that is linked to the registration form andreceives all participant metadata automatically.This means that hopefully when a participant joins the server, he/she should *automagically* get a role assigned from the bot.
+
+### **Normalised Data Loading**
+All runtime data loading is normalised through three json config files, namely
     
-    *gConfig --> Google Sheets Config*
+    googleSheetsConfig --> API keys and sheet meta data for Google Sheets
     
-    *serverConfig --> Channel and Role IDs of the server*
+    serverConfig --> Channel and Role IDs of the server
     
-    *Config (Main)  --> Discord API and Event Statuses*
+    Config (Main)  --> Discord API and Event Statuses
+    
+    Additionally, 2 more json files exist to handle registration data.
 
   
-+ **Command Handler**
+### **Command Handler**
     All bot commands are handled by a command handler.
-
-
+    
       
-Checkout Last Year's Bot: <https://github.com/VishalVSV/TarangBot/blob/master/README.md>
+Last Year's Bot: <https://github.com/VishalVSV/TarangBot/blob/master/README.md>
