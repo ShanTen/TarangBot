@@ -43,19 +43,19 @@ for (const file of commandFiles) {
 //node index false
 //if undefined set as polling = true
 var pollingState = "true";
-if(arguments[2] && ["true","false"].includes(arguments[2].toLowerCase())){
+if (arguments[2] && ["true", "false"].includes(arguments[2].toLowerCase())) {
 	pollingState = arguments[2];
 }
 
-if(pollingState=="true") {
+if (pollingState == "true") {
 	setInterval(function () {
 		var today = new Date();
 		var date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
 		var time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
 		var dateTime = `${date} ${time}`;
-	
+
 		console.log(`Polled at ${dateTime}`);
-	
+
 		GetSheets().then(
 			unformated_data => {
 				if (unformated_data && unformated_data != null) {
@@ -76,7 +76,7 @@ if(pollingState=="true") {
 				}
 			}
 		).catch(err => console.log(err.message));
-	}, 10000)	
+	}, 10000)
 }
 
 //############################### STATUS ###############################
@@ -97,15 +97,17 @@ client.on('guildMemberAdd', (member) => {
 	console.log("Got New Join!");
 	let user = `${member.user.username}#${member.user.discriminator}`;
 	console.log(`${user} Joined the server!`); //LOGIT
-	if(!someJSONobj[user]){ //bruh 
+	if (!someJSONobj[user]) { //bruh 
 		return;
 	}
 	var rolesToassign = someJSONobj[user].Events;
 	for (var roleName of rolesToassign) {
 		let roleID = serverConfig.Events[roleName].RoleID;
-		member.roles.add(roleID)
-	}
+		member.roles.add(roleID);
 
+		let channelID = serverConfig.Events[roleName].ChannelID;
+		client.channels.cache.get(channelID).send(`Welcome to ${roleName}  ${someJSONobj[user].Name}!`);
+	}
 });
 
 //############################### Command Handler ###############################
@@ -125,7 +127,6 @@ client.on('message', message => {
 
 	if (!command) return;
 
-	// Config -> Load Role IF from config
 	var commandInstance = command.getCommand();
 
 	if (!message.member.roles.cache.has(organiserRole) && !command.isPublic && command.isPublic != undefined) {
@@ -136,7 +137,7 @@ client.on('message', message => {
 		return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
 	try {
 
-		if([21,4,292,69,420,11,33].includes(Math.floor((Math.random() * 1000) + 1))){
+		if ([21, 4, 292, 69, 420, 11, 33].includes(Math.floor((Math.random() * 1000) + 1))) {
 			return message.channel.send('no.');
 		}
 
@@ -145,9 +146,9 @@ client.on('message', message => {
 		var incrementCommands = Object.keys(stats);
 
 		executingCommands[message.author.id] = commandInstance.execute(message, args, config, db, Discord); //adding disc instance maybe bad idea
-		
+
 		//lmao
-		if(incrementCommands.includes(command.name)){
+		if (incrementCommands.includes(command.name)) {
 			(async function (sfloc) {
 				stats[command.name] += 1;
 				var data = JSON.stringify(stats)
@@ -165,8 +166,11 @@ client.on('message', message => {
 //Unused / Debug
 // console.log(executingCommands);
 //Fix server config channel IDs
-// let channelID = serverConfig.Events[roleName].ChannelID;
-// console.log(member.client.channels.cache)
-// .get(channelID).send(`Welcome to ${roleName} ${someJSONobj[user].name}!`);
-// client.channels.cache.get(channelID).send(`Welcome to ${roleName} ${someJSONobj[user].name}!`);
-// console.log(unformated_data.values[0]); //DEBUG
+// console.log(unformated_data.values[0]); 
+//DEBUG
+// //channel test start
+// for(eventName of Object.keys(serverConfig.Events)){
+// 	var _chan = `<#${serverConfig.Events[eventName].ChannelID}>`
+// 	message.channel.send(`${eventName} : ${_chan}`);
+// }
+// //channel test end 

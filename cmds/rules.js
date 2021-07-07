@@ -9,7 +9,7 @@ const eventData = getEventRulesObj(eventRulesAbsPath); //loaded only once UwU so
 
 module.exports = {
     name: 'rules',
-    description: `Get rules about an event. `,
+    description: `Get the rules and details about an event or just Tarang in genral`,
     usage: `${prefix}rules <Event Name>`,
     aliases: ['roolz'], //#Quirkyh! 😜😝😝
     isPublic: true,
@@ -20,7 +20,7 @@ module.exports = {
 
                 let eventName;
 
-                if (!args[0]) eventName = 'GENERAL';
+                if (!args[0] || args[0].toLowerCase()===`tarang` || args[0].toLowerCase()===`general`) eventName = 'GENERAL';
                 else eventName = args[0].toUpperCase();
 
                 let eventKeys = Object.keys(eventData);

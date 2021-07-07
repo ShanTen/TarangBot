@@ -5,7 +5,7 @@ const makeEmbed = require('../helpScripts/embedWrapper')
 
 module.exports = {
     name: 'help',
-    description: `This Command.`,
+    description: `This Command? This Command. Gets you all available commands!`,
     usage: `${prefix}help`,
     aliases: ['info'],
     isPublic: true,

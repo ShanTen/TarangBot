@@ -3,7 +3,7 @@ const prefix = require('../config.json').preifx;
 
 module.exports = {
     name: 'headpat',
-    description: `Emotional Support with a chance of rejection.`,
+    description: `Varied Emotional Support with a chance of rejection ;) `,
     usage: `${prefix}headpat`,
     aliases: ['patpat', 'hp'],
     isPublic: true,
@@ -33,9 +33,9 @@ module.exports = {
                     "https://tenor.com/view/no-bugs-bunny-nope-gif-14359850"
                 ];
 
-                var randint = getRandomInt(0,headpats.length);
+                var randint = getRandomInt(0, headpats.length);
 
-                if(!headpats[randint]) randint = 2;
+                if (!headpats[randint]) randint = 2;
 
                 message.reply(headpats[randint]);
             }
