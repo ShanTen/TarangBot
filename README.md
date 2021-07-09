@@ -1,6 +1,6 @@
 # TarangBot 2021
 <p align="center">
-  <img width="350" height="350" src="https://media.discordapp.net/attachments/853167765400322086/855063676843196416/Screenshot_20210616-222910_Adobe_Acrobat.jpg?width=671&height=671">
+  <img width="400" height="400" src="https://media.discordapp.net/attachments/706898530450800644/862918835974963260/lighting_effect.png?width=670&height=670">
 </p>
 
 ### *Experience Euphoria!*
