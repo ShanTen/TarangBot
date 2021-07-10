@@ -30,5 +30,6 @@ All runtime data loading is normalised through three json config files, namely
 ### **Command Handler**
     All bot commands are handled by a command handler.
     
-      
-Last Year's Bot: <https://github.com/VishalVSV/TarangBot/blob/master/README.md>
+File art by [Vishal](https://github.com/VishalVSV/)
+
+[Last Year's Bot](https://github.com/VishalVSV/TarangBot/blob/master/README.md)
