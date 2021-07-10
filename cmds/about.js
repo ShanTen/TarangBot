@@ -12,7 +12,6 @@ module.exports = {
     getCommand() {
         return {
             execute(message, args, _config, _db, Discord) {
-                const commands = message.client.commands;
                 let iconUrl = `https://cdn.discordapp.com/avatars/504707691428446221/a_250d896ab25aa6bf7eca4a2c5311ac93.png?size=256`;
                 var embed = new Discord.MessageEmbed()
                 embed
