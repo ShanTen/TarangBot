@@ -65,10 +65,25 @@ module.exports = {
                         }
                     })(this.messages);
 
-                    let pfpLink = ``;
+                    var someImg = ``;
                     var title = this.AnouncementTitle;
                     var body = message.content;
-                    var annEmbed = makeEmbed(message, title, body, null, "#FF8000", pfpLink)
+
+                    var imgEnds = ["png","jpg","jpeg","gif"]
+
+                    if(message.attachments.size > 0){
+                        for(ie of imgEnds){
+                            if(message.attachments.first().url.toLowerCase().includes(ie)){
+                                someImg = message.attachments.first().url;
+                                break;
+                            }
+                            else{
+                                continue;
+                            }
+                        }
+                    }
+
+                    var annEmbed = makeEmbed(message, title, body, null, "#FF8000", someImg)
                     try {
                         this.progressInt = 0;
                         message.client.channels.cache.get(this.AnnouncementChannelID).send(annEmbed)
