@@ -14,7 +14,7 @@ module.exports = {
         return {
             execute(message, args, _config, _db) {
 
-                const commands = message.client.cmds;//message.client.commands; 
+                const commands = message.client.cmds || message.client.commands;//message.client.commands; 
 
                 var returnStr = '';
                 var fvecArr = [];
