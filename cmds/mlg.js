@@ -31,7 +31,7 @@ module.exports = {
                     "https://tenor.com/view/mlg-shoot-dance-gif-12516972"
                 ];
 
-                var randint = getRandomInt(0, headpats.length);
+                var randint = getRandomInt(0, gifs.length);
 
                 if (!gifs[randint]) randint = 2;
 
