@@ -14,7 +14,7 @@
 	var url = function () {
 		//checks next line automagically in time interval
 		t_registrationsCount = saveData.registrationsCount + 1;
-		return `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/'${sheetName}'!A${2 + t_registrationsCount}:BW${2 + t_registrationsCount}?key=${key}`;
+		return `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/'${sheetName}'!A${2 + t_registrationsCount}:CE${2 + t_registrationsCount}?key=${key}`;
 	};
 
 	const getReq = async (url) => {
