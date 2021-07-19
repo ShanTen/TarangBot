@@ -1,5 +1,6 @@
 //its 2:54AM and I cannot sleep
 const prefix = require('../config.json').preifx;
+const readjson = require('../helpScripts/readJSON');
 
 module.exports = {
     name: 'goodbot',
@@ -12,7 +13,7 @@ module.exports = {
         return {
             execute(message, args, _config) {
                 message.react('😁');
-                var gbCount = require('../stats.json')["goodbot"];
+                var gbCount = readjson('../stats.json')["goodbot"];
                 message.channel.send("`Thanks for the appreceashun 🥰 ! I have been appreciated " + gbCount.toString() + " times!`")
                 return;
             }

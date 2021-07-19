@@ -1,5 +1,6 @@
 const prefix = require('../config.json').preifx;
 const makeEmbed = require('../helpScripts/embedWrapper')
+const readjson = require('../helpScripts/readJSON');
 
 module.exports = {
     name: 'regdata',
@@ -10,7 +11,7 @@ module.exports = {
     getCommand(){
         return{
             execute(message, args, _config, _db){
-                var returnStr = `Registrations: ${require(`../save.json`).registrationsCount}\nParticipants: ${require(`../save.json`).participants}`
+                var returnStr = `Registrations: ${readjson(`../save.json`).registrationsCount}\nParticipants: ${readjson(`../save.json`).participants}`
                 var embed = makeEmbed(message,"Registrations",returnStr,null,"#FF8000",null);
                 message.channel.send(embed);
             }        

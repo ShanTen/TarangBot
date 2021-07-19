@@ -1,11 +1,14 @@
+const readJSON = require('./helpScripts/readJSON');
+
 module.exports = function AppendData(reg){
-    var saveData = require('./save.json');
+	var saveData = readJSON('./save.json'); //var
+
     class Participant{ //lmao
         Name;
         Events=[];
     }    
     try{
-        var tParticipants = require('./participants.json'); //Of [DiscordID] of [prop] = val
+        var tParticipants = readJSON('./participants.json'); //Of [DiscordID] of [prop] = val
 
         let eventsRegistered = reg.EventsRegistered;
         for(eventReg of eventsRegistered){

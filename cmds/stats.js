@@ -1,6 +1,7 @@
 //its 2:54AM and I cannot sleep
 const prefix = require('../config.json').preifx;
 const makeEmbed = require('../helpScripts/embedWrapper');
+const readjson = require('../helpScripts/readJSON');
 
 module.exports = {
     name: 'stats',
@@ -12,7 +13,7 @@ module.exports = {
     getCommand() {
         return {
             execute(message, args, _config) {
-                var stats = require('../stats.json');
+                var stats = readjson('../stats.json');
 
                 var vecArr = [];
                 for(_cmd of Object.keys(stats)) {

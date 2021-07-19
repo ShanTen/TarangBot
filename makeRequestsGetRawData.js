@@ -1,5 +1,11 @@
-module.exports = async function makeRequestsReturnRawData(){
-	var saveData = require('./save.json');
+	const readJSON = require('./helpScripts/readJSON');
+	
+	module.exports = async function makeRequestsReturnRawData(){
+	
+
+	var saveData = readJSON('./save.json'); //var
+
+
 	const axios = require('axios');
 	const config = require('./gsheetsConfig.json');
 	var sheetId = config.gSheetID;
