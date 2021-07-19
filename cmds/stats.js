@@ -13,7 +13,7 @@ module.exports = {
     getCommand() {
         return {
             execute(message, args, _config) {
-                var stats = readjson('../stats.json');
+                var stats = readjson('./stats.json');
 
                 var vecArr = [];
                 for(_cmd of Object.keys(stats)) {

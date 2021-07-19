@@ -13,7 +13,7 @@ module.exports = {
         return {
             execute(message, args, _config) {
                 message.react('😁');
-                var gbCount = readjson('../stats.json')["goodbot"];
+                var gbCount = readjson('./stats.json')["goodbot"];
                 message.channel.send("`Thanks for the appreceashun 🥰 ! I have been appreciated " + gbCount.toString() + " times!`")
                 return;
             }
