@@ -21,7 +21,7 @@ module.exports = {
                 }
 
                 var headpats = [
-                    "https://tenor.com/view/kaede-azusagawa-kaede-gif-head-headpat-gif-13284057",
+                    "https://tenor.com/view/nikki-nibbles-aira-good-job-nibbles-pat-on-the-head-nibbles-gif-18351839",
                     "https://tenor.com/view/big-hero6-baymax-there-there-patting-head-pat-head-gif-4086973",
                     "https://tenor.com/view/good-boy-pat-on-head-stitch-gif-14742401",
                     "https://tenor.com/view/kaede-azusagawa-kaede-gif-head-headpat-gif-13284057",
