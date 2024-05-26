@@ -3,6 +3,8 @@
   <img height="400" src="https://raw.githubusercontent.com/ShanTen/staticHaver/master/tarangYikes.PNG">
 </p>
 
+[Tbot in action!](https://raw.githubusercontent.com/ShanTen/staticHaver/master/Tbot.png)
+
 ### *Experience Euphoria!*
 
 The discord bot written to handle registrations 
