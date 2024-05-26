@@ -1,6 +1,6 @@
 # TarangBot 2021
 <p align="center">
-  <img width="400" height="400" src="https://media.discordapp.net/attachments/706898530450800644/862921514663936010/unknown.png">
+  <img height="400" src="https://raw.githubusercontent.com/ShanTen/staticHaver/master/tarangYikes.PNG">
 </p>
 
 ### *Experience Euphoria!*
